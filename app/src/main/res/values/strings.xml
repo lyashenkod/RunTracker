@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RunTracker</string>
+    <string name="started">Начало:</string>
+    <string name="latitude">Широта:</string>
+    <string name="longitude">Долгота:</string>
+    <string name="altitude">Высота:</string>
+    <string name="elapsed_time">Прошедшее время:</string>
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="gps_enabled">GPS Включен</string>
+    <string name="gps_disabled">GPS Выключен</string>
+    <string name="cell_text">Выплонить в %1$s</string>
+
+</resources>
