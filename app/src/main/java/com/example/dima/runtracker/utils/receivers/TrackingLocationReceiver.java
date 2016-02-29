@@ -10,7 +10,7 @@ import com.example.dima.runtracker.utils.RunManager;
  */
 public class TrackingLocationReceiver extends LocationReceiver {
     @Override
-    protected void onLocationReceived(Context c, Location loc) {
+    public void onLocationReceived(Context c, Location loc) {
         RunManager.get(c).insertLocation(loc);
     }
 }

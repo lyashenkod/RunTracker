@@ -9,6 +9,8 @@ import android.location.LocationManager;
 import android.util.Log;
 
 import com.example.dima.runtracker.database.RunDatabaseHelper;
+import com.example.dima.runtracker.database.RunDatabaseHelper.RunCursor;
+
 import com.example.dima.runtracker.entity.Run;
 
 /**
@@ -98,7 +100,9 @@ public class RunManager {
     public boolean isTrackingRun() {
         return getLocationPendingIntent(false) != null;
     }
-
+    public boolean isTrackingRun(Run run) {
+        return getLocationPendingIntent(false) != null;
+    }
 
     public Run startNewRun() {
         // Вставка объекта Run в базу данных
@@ -116,15 +120,21 @@ public class RunManager {
         // Запуск обновления данных местоположения
         startLocationUpdates();
     }
+
     public void stopRun() {
         stopLocationUpdates();
         mCurrentRunId = -1;
         mPrefs.edit().remove(PREF_CURRENT_RUN_ID).commit();
     }
+
     private Run insertRun() {
         Run run = new Run();
         run.setId(mHelper.insertRun(run));
         return run;
+    }
+
+    public RunCursor queryRuns() {
+        return mHelper.queryRuns();
     }
 
     public void insertLocation(Location loc) {
@@ -133,5 +143,31 @@ public class RunManager {
         } else {
             Log.e(TAG, "Location received with no tracking run; ignoring.");
         }
+    }
+
+    public Run getRun(long id) {
+        Run run = null;
+        RunCursor cursor = mHelper.queryRun(id);
+        cursor.moveToFirst();
+        // Если строка присутствует, получить объект серии
+        if (!cursor.isAfterLast())
+            run = cursor.getRun();
+        cursor.close();
+        return run;
+    }
+
+    public Location getLastLocationForRun(long runId) {
+        Location location = null;
+        RunDatabaseHelper.LocationCursor cursor = mHelper.queryLastLocationForRun(runId);
+        cursor.moveToFirst();
+        // Если набор не пуст, получить местоположение
+        if (!cursor.isAfterLast())
+            location = cursor.getLocation();
+        cursor.close();
+        return location;
+    }
+
+    public RunDatabaseHelper.LocationCursor queryLocationsForRun(long runId) {
+        return mHelper.queryLocationsForRun(runId);
     }
 }

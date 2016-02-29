@@ -10,5 +10,11 @@
     <string name="gps_enabled">GPS Включен</string>
     <string name="gps_disabled">GPS Выключен</string>
     <string name="cell_text">Выплонить в %1$s</string>
+    <string name="new_run">Новая серия</string>
+    <string name="map">Карта</string>
+    <string name="run_start">Начало пути</string>
+    <string name="run_started_at_format">Старт в %s</string>
+    <string name="run_finish">Конец пути</string>
+    <string name="run_finished_at_format">Финиш в %s</string>
 
 </resources>

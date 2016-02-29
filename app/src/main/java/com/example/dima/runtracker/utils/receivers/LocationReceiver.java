@@ -30,12 +30,12 @@ public class LocationReceiver extends BroadcastReceiver {
         }
     }
 
-    protected void onLocationReceived(Context context, Location loc) {
+    public void onLocationReceived(Context context, Location loc) {
         Log.d(TAG, this + " Got location from " + loc.getProvider() + ": "
                 + loc.getLatitude() + ", " + loc.getLongitude());
     }
 
-    protected void onProviderEnabledChanged(boolean enabled) {
+    public void onProviderEnabledChanged(boolean enabled) {
         Log.d(TAG, "Provider " + (enabled ? "enabled" : "disabled"));
     }
 }

@@ -1,9 +1,12 @@
 package com.example.dima.runtracker.ui.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
 
 import com.example.dima.runtracker.R;
 
@@ -30,5 +33,8 @@ public abstract class SingleFragmentActivity extends ActionBarActivity {
     }
 
 
-
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        return super.onMenuOpened(featureId, menu);
+    }
 }
